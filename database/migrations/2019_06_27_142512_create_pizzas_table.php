@@ -23,6 +23,7 @@ class CreatePizzasTable extends Migration
             $table->string('stripe_token');
             $table->integer('cantidad_pizzas');
             $table->decimal('total', 10,2);
+            $table->string('tipoPago')->default('VISA');
             $table->timestamps();
         });
     }

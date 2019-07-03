@@ -34,4 +34,14 @@ class PizzasController extends Controller
             ],200);
         }
     }
+
+    public function getAll(Request $r)
+    {
+        return response()->json(
+            [
+                'pedidos' => Pizzas::orderBy('id', 'asc')->get()
+            ],
+            200
+        );
+    }
 }
