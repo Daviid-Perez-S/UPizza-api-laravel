@@ -14,7 +14,7 @@ class PagoControlller extends Controller
     {
         // Obtener los datos de la comrpa realizada
         $compra = Pizzas::where('stripe_token', $token_compra)->first();
-        if(count($compra) > 0)
+        if($compra)
         {
             Stripe::setApiKey(config('services.stripe.secret'));
             $customer = Customer::create(array(
