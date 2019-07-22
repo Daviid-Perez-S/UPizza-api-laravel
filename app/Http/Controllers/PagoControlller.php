@@ -10,36 +10,25 @@ use App\Pizzas;// órdenes
 
 class PagoControlller extends Controller
 {
-    public static function cobrar($token_compra)
+    public static function cobrar($token_compra, $monto)
     {
-        // Obtener los datos de la comrpa realizada
-        $compra = Pizzas::where('stripe_token', $token_compra)->first();
-        if($compra)
-        {
-            Stripe::setApiKey(config('services.stripe.secret'));
-            $customer = Customer::create(array(
-                'email' => $compra->correo,
-                'source'  => $token_compra
-            ));
-    
-            $charge = Charge::create(array(
-                'customer' => $customer->id,
-                'amount'   => round($compra->total, 2),
-                'currency' => 'MXN'
-            ));
+        Stripe::setApiKey(config('services.stripe.secret'));
+        $customer = Customer::create(array(
+            'email' => 'test@ids.com',
+            'source'  => $token_compra
+        ));
 
-            return response()->json(
-                [
-                    'OK'
-                ]
-                ,200
-            );
-        }
-        else
-        {
-            return response()->json([
-                'No se encuentra la orden seleccionada'
-            ],404);
-        }
+        $charge = Charge::create(array(
+            'customer' => $customer->id,
+            'amount'   => round($monto, 2),
+            'currency' => 'MXN'
+        ));
+
+        return response()->json(
+            [
+                'OK'
+            ]
+            ,200
+        );
     }
 }
