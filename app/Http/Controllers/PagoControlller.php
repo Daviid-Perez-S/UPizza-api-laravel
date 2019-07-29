@@ -12,6 +12,7 @@ class PagoControlller extends Controller
 {
     public static function cobrar($token_compra, $monto)
     {
+        // dd($token_compra);
         Stripe::setApiKey(config('services.stripe.secret'));
         $customer = Customer::create(array(
             'email' => 'test@ids.com',
