@@ -22,7 +22,7 @@ class PagoControlller extends Controller
     
             $charge = Charge::create(array(
                 'customer' => $customer->id,
-                'amount'   => $monto,
+                'amount'   => intval($monto),
                 'currency' => 'MXN'
             ));
     
