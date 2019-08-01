@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Customer;
 use Stripe\Charge;
-use App\Pizzas;// órdenes
 
 class PagoControlller extends Controller
 {
