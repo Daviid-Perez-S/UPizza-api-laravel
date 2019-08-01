@@ -11,7 +11,7 @@ class PagoControlller extends Controller
 {
     public static function cobrar($token_compra, $monto)
     {
-        // dd($token_compra);
+        // dd($token_compra);   // Imprimir algo
 
         try {
             Stripe::setApiKey(config('services.stripe.secret'));
